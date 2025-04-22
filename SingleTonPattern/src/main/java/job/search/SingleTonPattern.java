@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class SingleTonExample {
+public class SingleTonPattern {
     private final Random random = new Random();
 
     private final List<String> employees = IntStream.rangeClosed(10, 110).mapToObj(i -> "Employee-" + i).toList();
     private final List<Integer> seatNumbers = IntStream.rangeClosed(1, 10).boxed().toList();
 
     public static void main(String[] args) {
-        SingleTonExample obj = new SingleTonExample();
+        SingleTonPattern obj = new SingleTonPattern();
 
         Thread bookingThread = new Thread(() -> {
             obj.checkInBooking();

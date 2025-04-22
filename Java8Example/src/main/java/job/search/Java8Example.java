@@ -2,7 +2,7 @@ package job.search;
 
 import job.search.util.*;
 
-public class TestJava8Stream {
+public class Java8Example {
     public static void main(String[] args) {
         CharacterOperation.countEachCharacterInString();
         EvenOddOperation.extractEvenAndOddNumber();
