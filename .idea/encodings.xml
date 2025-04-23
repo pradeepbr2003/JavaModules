@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Java8Example/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Java8Example/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MainModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MainModule/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ObserverPattern/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ObserverPattern/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SingleTonPattern/src/main/java" charset="UTF-8" />
