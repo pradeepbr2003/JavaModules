@@ -4,17 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
-    public static void main(String[] args) {
-        String commandForSingleTon = "java -jar SingleTonPattern-1.0-SNAPSHOT.jar";
-        String commandForObserver = "java -jar ObserverPattern-1.0-SNAPSHOT.jar";
-        String commandForJava8 = "java -jar Java8Example-1.0-SNAPSHOT.jar";
-        String commandForLiftProgram = "java -jar LiftExample-1.0-SNAPSHOT.jar";
-        executeJar(commandForJava8);
-        executeJar(commandForObserver);
-        executeJar(commandForLiftProgram);
-        executeJar(commandForSingleTon);
+import static job.search.ExecuteJarEnum.*;
 
+public class Main {
+
+    public static void main(String[] args) {
+        Runnable singleTonRunnable = () -> executeJar(SINGLETON.command());
+        Runnable observerRunnable = () -> executeJar(OBSERVER.command());
+        Runnable java8Runnable = () -> executeJar(JAVA_STREAM.command());
+        Runnable liftProgramRunnable = () -> executeJar(LIFT_PROGRAM.command());
+
+        java8Runnable.run();
+        observerRunnable.run();
+        liftProgramRunnable.run();
+        singleTonRunnable.run();
     }
 
     private static void executeJar(String command) {
