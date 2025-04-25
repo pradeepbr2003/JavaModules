@@ -13,6 +13,7 @@
         <module>Java8Example</module>
         <module>SingleTonPattern</module>
         <module>MainModule</module>
+        <module>LiftExample</module>
     </modules>
 
     <properties>
@@ -20,6 +21,14 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

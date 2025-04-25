@@ -9,8 +9,10 @@ public class Main {
         String commandForSingleTon = "java -jar SingleTonPattern-1.0-SNAPSHOT.jar";
         String commandForObserver = "java -jar ObserverPattern-1.0-SNAPSHOT.jar";
         String commandForJava8 = "java -jar Java8Example-1.0-SNAPSHOT.jar";
+        String commandForLiftProgram = "java -jar LiftExample-1.0-SNAPSHOT.jar";
         executeJar(commandForJava8);
         executeJar(commandForObserver);
+        executeJar(commandForLiftProgram);
         executeJar(commandForSingleTon);
 
     }
