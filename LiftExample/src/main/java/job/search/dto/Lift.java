@@ -8,6 +8,5 @@ import lombok.Data;
 public class Lift extends Thread {
     private String liftName;
     private int currentFloor;
-    private volatile
-    boolean isAvailable;
+    private volatile boolean isAvailable;
 }
