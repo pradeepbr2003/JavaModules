@@ -15,6 +15,7 @@
         <module>MainModule</module>
         <module>LiftExample</module>
         <module>Parking</module>
+        <module>JobSearchExample</module>
     </modules>
 
     <properties>

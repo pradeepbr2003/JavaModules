@@ -8,11 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="LiftExample" />
-        <module name="Parking" />
         <module name="ObserverPattern" />
+        <module name="JobSearchExample" />
+        <module name="SingleTonPattern" />
+        <module name="Parking" />
         <module name="Java8Example" />
         <module name="Main" />
-        <module name="SingleTonPattern" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

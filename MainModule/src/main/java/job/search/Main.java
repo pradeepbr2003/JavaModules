@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static job.search.ExecuteJarEnum.*;
+import static job.search.common.ExecuteJarEnum.*;
 
 public class Main {
 
@@ -13,10 +13,14 @@ public class Main {
         Runnable observerRunnable = () -> executeJar(OBSERVER.command());
         Runnable java8Runnable = () -> executeJar(JAVA_STREAM.command());
         Runnable liftProgramRunnable = () -> executeJar(LIFT_PROGRAM.command());
+        Runnable jobSeek = () -> executeJar(JOB_SEARCH.command());
+        Runnable parkingLot = () -> executeJar(PARKING_LOT.command());
 
         java8Runnable.run();
         observerRunnable.run();
         liftProgramRunnable.run();
+        jobSeek.run();
+        parkingLot.run();
         singleTonRunnable.run();
     }
 
