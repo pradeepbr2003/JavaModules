@@ -3,16 +3,19 @@ package job.search;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import static job.search.common.ExecuteJarEnum.*;
 
 public interface IMain {
-    Runnable singleTonRunnable = () -> executeJar(SINGLETON.command());
-    Runnable observerRunnable = () -> executeJar(OBSERVER.command());
-    Runnable java8Runnable = () -> executeJar(JAVA_STREAM.command());
-    Runnable liftProgramRunnable = () -> executeJar(LIFT_PROGRAM.command());
-    Runnable jobSeek = () -> executeJar(JOB_SEARCH.command());
-    Runnable parkingLot = () -> executeJar(PARKING_LOT.command());
+
+    List<Runnable> runnableJars =
+            List.of(() -> executeJar(JAVA_STREAM.command()),
+                    () -> executeJar(OBSERVER.command()),
+                    () -> executeJar(JOB_SEARCH.command()),
+                    () -> executeJar(JOB_SEARCH.command()),
+                    () -> executeJar(LIFT_PROGRAM.command()),
+                    () -> executeJar(SINGLETON.command()));
 
     private static void executeJar(String command) {
         try {
