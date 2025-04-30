@@ -1,6 +1,6 @@
 package job.search.constant;
 
-public enum ExecuteJarEnum {
+public enum JarCommandEnum {
     SINGLETON("java -jar SingleTonPattern-1.0-SNAPSHOT.jar"),
     OBSERVER("java -jar ObserverPattern-1.0-SNAPSHOT.jar"),
     JAVA_STREAM("java -jar Java8Example-1.0-SNAPSHOT.jar"),
@@ -11,7 +11,7 @@ public enum ExecuteJarEnum {
 
     private String command;
 
-    ExecuteJarEnum(String command) {
+    JarCommandEnum(String command) {
         this.command = command;
     }
 

@@ -1,12 +1,12 @@
 package job.search;
 
 import job.search.business.logic.ExecuteJar;
-import job.search.business.logic.IMain;
 
-public class Main implements IMain {
+import static job.search.business.logic.ExecuteJarEnum.JAR_LIST;
 
+
+public class Main {
     public static void main(String[] args) {
-        jarList.forEach(ExecuteJar::run);
+        JAR_LIST.get().forEach(ExecuteJar::run);
     }
-
 }
