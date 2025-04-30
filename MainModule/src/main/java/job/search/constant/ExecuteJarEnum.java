@@ -1,4 +1,4 @@
-package job.search.common;
+package job.search.constant;
 
 public enum ExecuteJarEnum {
     SINGLETON("java -jar SingleTonPattern-1.0-SNAPSHOT.jar"),

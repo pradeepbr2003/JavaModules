@@ -1,23 +1,23 @@
-package job.search;
+package job.search.business.logic;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import static job.search.common.ExecuteJarEnum.*;
+import static job.search.constant.ExecuteJarEnum.*;
 
 public interface IMain {
 
-    List<Runnable> runnableJars =
-            List.of(() -> executeJar(JAVA_STREAM.command()),
-                    () -> executeJar(OBSERVER.command()),
-                    () -> executeJar(JOB_SEARCH.command()),
-                    () -> executeJar(JOB_SEARCH.command()),
-                    () -> executeJar(LIFT_PROGRAM.command()),
-                    () -> executeJar(SINGLETON.command()));
+    List<ExecuteJar> jarList =
+            List.of(() -> execute(JAVA_STREAM.command()),
+                    () -> execute(OBSERVER.command()),
+                    () -> execute(JOB_SEARCH.command()),
+                    () -> execute(JOB_SEARCH.command()),
+                    () -> execute(LIFT_PROGRAM.command()),
+                    () -> execute(SINGLETON.command()));
 
-    private static void executeJar(String command) {
+    private static void execute(String command) {
         try {
             Process process = Runtime.getRuntime().exec(command);
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
