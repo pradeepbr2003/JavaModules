@@ -1,17 +1,22 @@
 package job.search.business.logic;
 
+import job.search.constant.JarCommandEnum;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static job.search.business.logic.ExecuteJar.execute;
-import static job.search.constant.JarCommandEnum.*;
 
 public enum ExecuteJarEnum {
-    JAR_LIST(List.of(() -> execute(JAVA_STREAM.command()), () -> execute(OBSERVER.command()), () -> execute(JOB_SEARCH.command()), () -> execute(JOB_SEARCH.command()), () -> execute(LIFT_PROGRAM.command()), () -> execute(SINGLETON.command())));
 
-    private List<ExecuteJar> executeJarList;
+    JAR_LIST(Arrays.stream(JarCommandEnum.values()));
 
-    ExecuteJarEnum(List<ExecuteJar> executeJarList) {
-        this.executeJarList = executeJarList;
+    private List<ExecuteJar> executeJarList = new ArrayList<>();
+
+    ExecuteJarEnum(Stream<JarCommandEnum> jarCommandEnums) {
+        jarCommandEnums.forEach(jc -> this.executeJarList.add(() -> execute(jc.command())));
     }
 
     public List<ExecuteJar> get() {
