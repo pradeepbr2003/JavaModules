@@ -9,35 +9,16 @@ import java.util.Map;
 
 public class AccountService {
 
+    WithdrawService withdrawService = new WithdrawService();
+
     public void withDraw(Account account, long amount) {
         AccountValidator.validate(account, amount);
         Map<Long, Long> denominationMap = new HashMap<>();
-        withDraw500(amount, denominationMap);
+        withdrawService.withDraw500(amount, denominationMap);
         System.out.printf("%n Account Holder - %s withdraw %d amount with denomination of  %s ", account.getHolderName(), amount, denominationMap);
         account.setBalance(account.getBalance() - amount);
         balance(account);
     }
-
-    private void withDraw100(long amount, Map<Long, Long> denominationMap) {
-        if (amount >= 100) {
-            denominationMap.put(100l, amount / 100);
-        }
-    }
-
-    private void withDraw200(long amount, Map<Long, Long> denominationMap) {
-        if (amount >= 200) {
-            denominationMap.put(200l, amount / 200);
-        }
-        withDraw100(amount % 200, denominationMap);
-    }
-
-    private void withDraw500(long amount, Map<Long, Long> denominationMap) {
-        if (amount >= 500) {
-            denominationMap.put(500l, amount / 500);
-        }
-        withDraw200(amount % 500, denominationMap);
-    }
-
 
     public void deposit(Account account, Map<Long, Long> amountMap) {
         AccountValidator.validate(account, amountMap);
