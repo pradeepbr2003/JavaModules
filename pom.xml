@@ -17,6 +17,7 @@
         <module>Parking</module>
         <module>JobSearchExample</module>
         <module>ATMExample</module>
+        <module>LibraryExample</module>
     </modules>
 
     <properties>

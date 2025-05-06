@@ -1,6 +1,7 @@
 package job.search.constant;
 
 public enum JarCommandEnum {
+    LIBRARY_EXAMPLE("java -jar LibraryExample-1.0-SNAPSHOT.jar"),
     ATM_EXAMPLE("java -jar ATMExample-1.0-SNAPSHOT.jar"),
     JAVA_STREAM("java -jar Java8Example-1.0-SNAPSHOT.jar"),
     JOB_SEARCH("java -jar JobSearchExample-1.0-SNAPSHOT.jar"),
