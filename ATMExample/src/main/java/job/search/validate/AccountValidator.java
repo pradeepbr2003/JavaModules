@@ -5,8 +5,20 @@ import job.search.dto.Account;
 import java.util.Map;
 
 public class AccountValidator {
+    public static void validate(Account account, Long amount) {
+        validateAccount(account);
+        checkInsufficientFund(account, amount);
+        minimumBalanceCheck(account, amount);
+        amountInvalid(amount);
+    }
 
-    public static void isValidAccount(Account account) {
+    public static void validate(Account account, Map<Long, Long> amountMap) {
+        validateAccount(account);
+        validateDeposit(amountMap);
+        validateDepositAmount(amountMap);
+    }
+
+    public static void validateAccount(Account account) {
         if (account == null) {
             throw new RuntimeException(String.format("%n Invalid : Account %n"));
         }
@@ -41,24 +53,17 @@ public class AccountValidator {
     }
 
 
-    public static void validate(Account account, Long amount) {
-        isValidAccount(account);
-        checkInsufficientFund(account, amount);
-        minimumBalanceCheck(account, amount);
-        amountInvalid(amount);
-    }
-
-    public static void validate(Account account, Map<Long, Long> amountMap) {
-        if (account == null) {
-            throw new RuntimeException(String.format("%n Invalid : Account %n"));
-        }
-        if (amountMap == null) {
-            throw new RuntimeException(String.format("%n Invalid : amount  %s %n", amountMap));
-        }
+    private static void validateDepositAmount(Map<Long, Long> amountMap) {
         amountMap.keySet().forEach(amt -> {
             if (amt != 100 && amt != 200 && amt != 500) {
                 throw new RuntimeException(String.format("%n Invalid : %s %n It should be in 100/200/500 %n", amountMap));
             }
         });
+    }
+
+    private static void validateDeposit(Map<Long, Long> amountMap) {
+        if (amountMap == null) {
+            throw new RuntimeException(String.format("%n Invalid : amount  %s %n", amountMap));
+        }
     }
 }
