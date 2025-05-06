@@ -26,7 +26,7 @@ public class AccountValidator {
 
     public static void checkInsufficientFund(Account account, Long amount) {
         if (account.getBalance() < amount) {
-            throw new RuntimeException(String.format("%n Invalid : Insufficient Fund for %s %n", account));
+            throw new RuntimeException(String.format("%n Invalid : Requested amount : %d %n Insufficient Fund for %s %n", amount, account));
         }
     }
 
@@ -39,16 +39,16 @@ public class AccountValidator {
     public static void minimumBalanceCheck(Account account, Long amount) {
         minimumBalanceCheck(account);
         if ((account.getBalance() - amount) < 2000) {
-            throw new RuntimeException(String.format("%n Invalid : Minimum balance should be 2000 %n"));
+            throw new RuntimeException(String.format("%n Invalid : Requested amount : %d %n Minimum balance should be 2000 %n", amount));
         }
     }
 
     public static void amountInvalid(Long amount) {
         if (amount < 100) {
-            throw new RuntimeException(String.format("%n Invalid : Amount less than 100 not acceptable %n"));
+            throw new RuntimeException(String.format("%n Invalid : Requested amount : %d %n Amount less than 100 not acceptable %n", amount));
         }
         if ((amount % 100) != 0) {
-            throw new RuntimeException(String.format("%n Invalid : Amount should be multiple of 100/200/500  %n"));
+            throw new RuntimeException(String.format("%n Invalid :  Requested amount : %d %n Amount should be multiple of 100/200/500  %n", amount));
         }
     }
 

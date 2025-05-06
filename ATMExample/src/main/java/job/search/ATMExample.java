@@ -1,31 +1,45 @@
 package job.search;
 
+import job.search.common.AccountHolderEnum;
+import job.search.common.AmountEnum;
 import job.search.dto.Account;
 import job.search.dto.Bank;
 import job.search.service.AccountService;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
+import static job.search.common.AmountEnum.*;
+
 public class ATMExample {
+    private static final Random random = new Random();
+    private static final AccountService accountService = new AccountService();
+    private static final Bank bank = new Bank("HDFC");
+
     public static void main(String[] args) {
-        AccountService accountService = new AccountService();
+        Arrays.stream(AccountHolderEnum.values()).map(ATMExample::getAccount).limit(10)
+                .forEach(ATMExample::transaction);
+    }
 
-        Account account = Account.builder()
-                .accountNumber(UUID.randomUUID().toString()).holderName("Pradeep").balance(2000)
-                .build();
-        Bank bank = new Bank("HDFC");
+    private static void transaction(Account account) {
         accountService.openAccount(bank, account);
-        accountService.deposit(account, Map.of(500l, 10l, 200l, 30l, 100l, 100l));
-        accountService.withDraw(account, 6500);
+        accountService.deposit(account, Map.of(
+                FIVE_HUNDRED.get(),
+                random.nextLong(3, 10),
+                TWO_HUNDRED.get(), random.nextLong(10, 30),
+                HUNDRED.get(), random.nextLong(30, 70)));
+        long amt = random.nextInt(10, 100) * AmountEnum.values()[random.nextInt(0, AmountEnum.values().length)]
+                .get();
+        accountService.withDraw(account, amt);
+    }
 
-        account = Account.builder()
-                .accountNumber(UUID.randomUUID().toString()).holderName("Deepak").balance(2000)
+    private static Account getAccount(AccountHolderEnum ah) {
+        return Account.builder()
+                .accountNumber(UUID.randomUUID().toString())
+                .holderName(ah.name())
+                .balance(2000)
                 .build();
-
-        accountService.openAccount(bank, account);
-        accountService.deposit(account, Map.of(500l, 5l, 200l, 10l, 100l, 3l));
-        accountService.withDraw(account, 3200);
-
     }
 }
