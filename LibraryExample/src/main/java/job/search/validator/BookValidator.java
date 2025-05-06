@@ -28,8 +28,8 @@ public interface BookValidator {
     }
 
     static void bookReturned(Student student, Book book) {
-        if (student.getBookIdList() == null && !student.getBookIdList().contains(book.getBookId()))
-            throw new RuntimeException(String.format("%n %s is already returned by %s %n", book.getTitle(), student.getStudName()));
+        if (student.getBookIdList() != null && !student.getBookIdList().contains(book.getBookId()))
+            throw new RuntimeException(String.format("%n %s is not taken by %s %n", book.getTitle(), student.getStudName()));
     }
 
     static Book bookExist(String bookTitle, List<Book> bookList) {
