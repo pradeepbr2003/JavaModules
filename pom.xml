@@ -18,6 +18,7 @@
         <module>JobSearchExample</module>
         <module>ATMExample</module>
         <module>LibraryExample</module>
+        <module>MovieShowExample</module>
     </modules>
 
     <properties>
