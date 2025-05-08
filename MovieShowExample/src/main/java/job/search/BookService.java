@@ -1,6 +1,6 @@
 package job.search;
 
-import job.search.dto.Movie;
+import job.search.dto.ShowTime;
 import job.search.dto.Theatre;
 import job.search.dto.Ticket;
 
@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static job.search.validator.BookingValidator.movieAvailableInTheatre;
-import static job.search.validator.BookingValidator.showsAvailableForMovie;
+import static job.search.validator.BookingValidator.isValidTimeBook;
 
 public interface BookService {
 
@@ -31,16 +30,11 @@ public interface BookService {
                 }
             }
         }
-        System.out.printf("%n----------------------------------------------------------------%n");
-        seatList(seatNumbers);
-        System.out.printf("%n----------------------------------------------------------------%n");
-
-        System.out.printf("%n House Full ! No Seats %n");
         return null;
     }
 
-    private static int[][] bookSeat(Theatre theatre) {
-        boolean[][] seatNumbers = theatre.getSeatNumbers();
+    private static int[][] bookSeat(ShowTime showTime) {
+        boolean[][] seatNumbers = showTime.getSeatNumbers();
         int[][] seatFound = findAvailableSeat(seatNumbers);
         if (seatFound != null) {
             seatNumbers[seatFound[0][0]][seatFound[0][1]] = true;
@@ -49,19 +43,19 @@ public interface BookService {
         return seatFound;
     }
 
-    static List<Ticket> bookSeat(String movieName, Theatre theatre, int numOfTickets) {
-        Movie movie = movieAvailableInTheatre(theatre, movieName);
-        Date showTime = showsAvailableForMovie(theatre, movie);
+    static List<Ticket> bookSeat(String movieName, Theatre theatre, int numOfTickets, Date bookTime) {
+        ShowTime showTime = isValidTimeBook(theatre, movieName, bookTime);
+
         List<Ticket> tickets = new ArrayList<>();
         for (int i = 0; i < numOfTickets; i++) {
-            int[][] seatFound = bookSeat(theatre);
+            int[][] seatFound = bookSeat(showTime);
             if (seatFound != null) {
                 Ticket ticket = Ticket.builder()
-                        .movie(movie).theatreName(theatre.getName()).seatNumber(seatFound).showTime(showTime)
+                        .movie(showTime.getMovie()).theatreName(theatre.getName()).seatNumber(seatFound).showTime(bookTime)
                         .build();
                 tickets.add(ticket);
             } else {
-                theatre.setHouseFull(true);
+                showTime.setHouseFull(true);
                 break;
             }
         }

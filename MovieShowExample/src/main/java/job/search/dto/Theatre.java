@@ -2,27 +2,36 @@ package job.search.dto;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.IntStream;
+
+import static job.search.util.DateEnum.SHOW_TIME;
 
 @Data
 public class Theatre {
     private final String name;
-    private boolean houseFull;
-    private boolean[][] seatNumbers = new boolean[4][4];
-    private Map<Movie, List<Date>> showTime;
+    private List<ShowTime> showTimes = new ArrayList<>();
 
     public Theatre(String name) {
         this.name = name;
-        intialize();
+        initialize();
     }
 
-    private void intialize() {
-        Movie movie = Movie.builder().title("Ranadheera").price(100).build();
-        Movie movie1 = Movie.builder().title("Grandfather").price(100).build();
-        List<Date> dates = List.of(new Date("07-may-2025 11:30 pm"), new Date("07-may-2025 2:30 pm"), new Date("07-may-2025 5:30 pm"));
-        List<Date> dates1 = List.of(new Date("07-may-2025 8:30 pm"));
-        showTime = Map.of(movie, dates, movie1, dates1);
+    private void prepareShowTime(int index) {
+        this.showTimes.add(ShowTime.builder()
+                .movie(Movie.builder().title("Ranadheera").price(100).build())
+                .date(SHOW_TIME.get().get(index))
+                .seatNumbers(new boolean[4][4])
+                .build());
+    }
+
+    private void initialize() {
+        IntStream.range(0, SHOW_TIME.get().size() - 1).forEach(this::prepareShowTime);
+        this.showTimes.add(ShowTime.builder()
+                .movie(Movie.builder().title("Grandfather").price(100).build())
+                .date(SHOW_TIME.get().get(SHOW_TIME.get().size() - 1))
+                .seatNumbers(new boolean[4][4])
+                .build());
     }
 }

@@ -1,34 +1,26 @@
 package job.search.validator;
 
-import job.search.dto.Movie;
+import job.search.dto.ShowTime;
 import job.search.dto.Theatre;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface BookingValidator {
 
-    static Movie movieAvailableInTheatre(Theatre theatre, String movieName) {
-        Map<Movie, List<Date>> showTime = theatre.getShowTime();
-        Optional<Movie> optMovie = showTime.keySet().stream()
-                .filter(m -> m.getTitle().equalsIgnoreCase(movieName)).findAny();
-
-        if (!optMovie.isPresent()) {
-            throw new RuntimeException(String.format("%n Movie - %s is not available at Theatre - %s %n", movieName, theatre.getName()));
+    static ShowTime isValidTimeBook(Theatre theatre, String movieName, Date bookTime) {
+        if (bookTime.before(new Date())) {
+            throw new RuntimeException(String.format("%n Exception : Invalid book time: %s %n Book time should be future time %n", bookTime));
         }
-        return optMovie.get();
-    }
-
-    static Date showsAvailableForMovie(Theatre theatre, Movie movie) {
-        Map<Movie, List<Date>> showTime = theatre.getShowTime();
-        Optional<Date> optShowTime = showTime.get(movie).stream().filter(d -> d.after(new Date())).findFirst();
-
-        if (!optShowTime.isPresent()) {
-            throw new RuntimeException(String.format("%n No Shows available for Movie - %s at Theatre - %s %n", movie.getTitle(), theatre.getName()));
+        if (theatre.getShowTimes().stream().noneMatch(st -> st.getMovie().getTitle().equalsIgnoreCase(movieName))) {
+            throw new RuntimeException(String.format("%n Exception : Movie - %s does not exists in Theatre - %s %n", movieName, theatre.getName()));
         }
-        return optShowTime.get();
-    }
 
+        Optional<ShowTime> optShowTime = theatre.getShowTimes().stream().filter(st -> (st.getDate().equals(bookTime) && st.getMovie().getTitle().equalsIgnoreCase(movieName))).findAny();
+        if (optShowTime.isPresent()) {
+            return optShowTime.get();
+        } else {
+            throw new RuntimeException(String.format("%n No Shows for movie - %s available at this booking time - %s  at theatre - %s %n", movieName, bookTime, theatre.getName()));
+        }
+    }
 }
