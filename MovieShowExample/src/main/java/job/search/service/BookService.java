@@ -1,4 +1,4 @@
-package job.search;
+package job.search.service;
 
 import job.search.dto.ShowTime;
 import job.search.dto.Theatre;
