@@ -1,15 +1,15 @@
 package job.search.constant;
 
 public enum JarCommandEnum {
-    MOVIE_EXAMPLE("java -jar MovieShowExample-1.0-SNAPSHOT.jar"),
-    LIBRARY_EXAMPLE("java -jar LibraryExample-1.0-SNAPSHOT.jar"),
-    ATM_EXAMPLE("java -jar ATMExample-1.0-SNAPSHOT.jar"),
-    JAVA_STREAM("java -jar Java8Example-1.0-SNAPSHOT.jar"),
-    JOB_SEARCH("java -jar JobSearchExample-1.0-SNAPSHOT.jar"),
-    OBSERVER("java -jar ObserverPattern-1.0-SNAPSHOT.jar"),
-    PARKING_LOT("java -jar ParkingExample-1.0-SNAPSHOT.jar"),
-    LIFT_PROGRAM("java -jar LiftExample-1.0-SNAPSHOT.jar"),
-    SINGLETON("java -jar SingleTonPattern-1.0-SNAPSHOT.jar");
+    MOVIE_EXAMPLE("MovieShowExample-1.0-SNAPSHOT.jar"),
+    LIBRARY_EXAMPLE("LibraryExample-1.0-SNAPSHOT.jar"),
+    ATM_EXAMPLE("ATMExample-1.0-SNAPSHOT.jar"),
+    JAVA_STREAM("Java8Example-1.0-SNAPSHOT.jar"),
+    JOB_SEARCH("JobSearchExample-1.0-SNAPSHOT.jar"),
+    OBSERVER("ObserverPattern-1.0-SNAPSHOT.jar"),
+    PARKING_LOT("ParkingExample-1.0-SNAPSHOT.jar"),
+    LIFT_PROGRAM("LiftExample-1.0-SNAPSHOT.jar"),
+    SINGLETON("SingleTonPattern-1.0-SNAPSHOT.jar");
 
     private String command;
 
