@@ -10,6 +10,9 @@ public class Java8Example {
         SumNumberOperation.sumOfAllnumbers();
         FilterNumberList.multipleOfSpecifiedNumber(5);
         MaxMinStream.maxMinOfNumber();
+        MaxMinStream.approach1();
+        MaxMinStream.approach2();
+        MaxMinStream.approach3();
         SortListStream.merge2UnsortedInto1SortedArray();
         SortListStream.merge2UnsortedInto1SortedList();
         MaxMinStream.approach3();

@@ -55,6 +55,9 @@ public class JobSearchExample {
             JobPortal jobPortal = new JobPortal(portal[random.nextInt(portal.length)].name(), List.of(company));
             jobPortal.register(jobSeeker);
 
+            jobPortal.register(jobSeeker);
+            jobPortal.update(jobSeeker);
+
             jobPortal.unRegister(jobSeeker);
 
         }

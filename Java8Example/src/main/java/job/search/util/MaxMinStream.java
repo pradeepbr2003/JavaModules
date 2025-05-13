@@ -4,10 +4,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class MaxMinStream {
     private static final List<Integer> list = new Random().ints(10, 1, 50).distinct()
-            .boxed().toList();
+            .boxed().collect(Collectors.toList());
 
     public static void approach1() {
         System.out.printf("%n Input Numbers :  %s", list);
