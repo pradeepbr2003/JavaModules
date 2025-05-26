@@ -1,27 +1,25 @@
 package job.search.service;
 
+import job.search.cash.CashDispenser;
+import job.search.cash.CashDispenser100;
+import job.search.cash.CashDispenser200;
+import job.search.cash.CashDispenser500;
+
 import java.util.Map;
 
 public class WithdrawService {
+    private CashDispenser cashDispenser;
 
-    private void withDraw100(long amount, Map<Long, Long> denominationMap) {
-        if (amount >= 100) {
-            denominationMap.put(100l, amount / 100);
-        }
+    public WithdrawService() {
+        cashDispenser = new CashDispenser500();
+        CashDispenser200 cashDispenser200 = new CashDispenser200();
+        CashDispenser100 cashDispenser100 = new CashDispenser100();
+        cashDispenser.setNextDispenser(cashDispenser200);
+        cashDispenser200.setNextDispenser(cashDispenser100);
     }
 
-    private void withDraw200(long amount, Map<Long, Long> denominationMap) {
-        if (amount >= 200) {
-            denominationMap.put(200l, amount / 200);
-        }
-        withDraw100(amount % 200, denominationMap);
+    public void withDraw(long amount, Map<Long, Long> denominationMap) {
+        cashDispenser.validate(amount);
+        cashDispenser.dispense(amount, denominationMap);
     }
-
-    public void withDraw500(long amount, Map<Long, Long> denominationMap) {
-        if (amount >= 500) {
-            denominationMap.put(500l, amount / 500);
-        }
-        withDraw200(amount % 500, denominationMap);
-    }
-
 }

@@ -11,7 +11,8 @@ ObserverPattern Module used to demonstrate Observer Pattern
 SingleTonPattern Module used to demonstrate Singleton Pattern as well it will demo on to book/check-in and check-out
 seat at office
 
+# Added Main Module which had main class used for just to run all other jars of modules (Java8Example,ObserverPattern, SingleTonPattern)
 
-# Added Main Module which had main class used for just to run all other jars of modules (Java8Example,ObserverPattern, SingleTonPattern) 
-# For ex:-  java -jar Main-1.0-SNAPSHOT.jar  will in turn run other jars 
+# For ex:- java -jar Main-1.0-SNAPSHOT.jar  will in turn run other jars
+
 # "Java8Example-1.0-SNAPSHOT.jar", "ObserverPattern-1.0-SNAPSHOT.jar" , "SingleTonPattern-1.0-SNAPSHOT.jar"

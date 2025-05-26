@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 @FunctionalInterface
 public interface ExecuteJar {
 
-    abstract void run();
-
     static void execute(String command) {
         try {
             Process process = Runtime.getRuntime().exec(command);
@@ -23,4 +21,6 @@ public interface ExecuteJar {
             System.out.println(e.getMessage());
         }
     }
+
+    abstract void run();
 }

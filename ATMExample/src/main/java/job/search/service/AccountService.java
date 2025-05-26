@@ -14,7 +14,7 @@ public class AccountService {
     public void withDraw(Account account, long amount) {
         AccountValidator.validate(account, amount);
         Map<Long, Long> denominationMap = new HashMap<>();
-        withdrawService.withDraw500(amount, denominationMap);
+        withdrawService.withDraw(amount, denominationMap);
         System.out.printf("%n Account Holder - %s withdraw %d amount with denomination of  %s ", account.getHolderName(), amount, denominationMap);
         account.setBalance(account.getBalance() - amount);
         balance(account);

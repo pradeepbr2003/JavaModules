@@ -39,6 +39,7 @@ public interface ATMHelper {
         }
 
     }
+
     static Account getAccount(AccountHolderEnum ah) {
         return Account.builder()
                 .accountNumber(UUID.randomUUID().toString())

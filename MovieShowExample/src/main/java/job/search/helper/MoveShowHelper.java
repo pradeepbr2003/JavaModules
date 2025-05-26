@@ -13,8 +13,6 @@ import java.util.stream.IntStream;
 
 public interface MoveShowHelper {
 
-    void execute();
-
     static void bookShow(Theatre theatre, List<Date> bookTimeList) {
         Random random = new Random();
         IntStream.rangeClosed(0, 10).forEach(index -> {
@@ -45,4 +43,6 @@ public interface MoveShowHelper {
         BookService.seatList(showTime.getSeatNumbers());
         System.out.printf("%n----------------------------------------------------------------%n");
     }
+
+    void execute();
 }
