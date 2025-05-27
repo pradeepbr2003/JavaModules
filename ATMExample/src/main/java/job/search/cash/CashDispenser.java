@@ -10,7 +10,14 @@ public abstract class CashDispenser {
         this.nextDispenser = cashDispenser;
     }
 
-    public abstract void dispense(long amount, Map<Long, Long> cashMap);
+    public void dispenseCash(long amount, Map<Long, Long> cashMap) {
+        amount = this.dispense(amount, cashMap);
+        if (this.nextDispenser != null) {
+            nextDispenser.dispenseCash(amount, cashMap);
+        }
+    }
+
+    public abstract long dispense(long amount, Map<Long, Long> cashMap);
 
     public void validate(long amount) {
         if (amount % 100 != 0) {
